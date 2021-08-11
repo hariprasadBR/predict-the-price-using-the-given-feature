@@ -18,3 +18,4 @@ numpy
 matplotlib
 seaborn
 sklearn
+![](predict-the-price-using-the-given-feature/image/R.jfif)
