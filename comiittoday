@@ -1,0 +1,54 @@
+public static WebDriver driver;
+//	public static By rating ;
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		driver = new ChromeDriver();
+
+		driver.get(
+				"https://www.amazon.in/?&tag=googhydrabk1-21&ref=pd_sl_7hz2t19t5c_e&adgrpid=155259815513&hvpone=&hvptwo=&hvadid=674842289437&hvpos=&hvnetw=g&hvrand=7114009038473992470&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9303798&hvtargid=kwd-10573980&hydadcr=14453_2316415&gad_source=1");
+
+		Actions act = new Actions(driver);
+
+		WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
+
+		act.click(searchBox).sendKeys("iphoen").build().perform();
+
+		WebElement searchButton = driver.findElement(By.id("nav-search-submit-button"));
+
+		act.click(searchButton).build().perform();
+
+		List<WebElement> ratingDropDown = driver.findElements(By.xpath("//i[@class='a-icon a-icon-popover']"));
+
+		int counter=0;
+		for (WebElement webElement1 : ratingDropDown) {
+			
+			System.out.println(counter+"<---------counter");
+			Thread.sleep(3000);
+			
+			System.out.println("click on popup=============>"+counter);
+			webElement1.click();
+			Thread.sleep(3000);
+			System.out.println("capturing string=============>"+counter);
+			WebElement stringrating = driver.findElement(
+					By.xpath("//span[@class='a-size-medium a-color-base a-text-beside-button a-text-bold']"));
+			System.out.println("printing =============>"+counter);
+			String a = stringrating.getText();
+			System.out.println(a);
+			System.out.println("capturing close-------->"+counter);
+			WebElement close = driver.findElement(By.xpath("//i[@class='a-icon a-icon-close']"));
+			System.out.println("close-------->"+counter);
+			close.click();
+			Thread.sleep(3000);
+			System.out.println("next----------->"+counter);
+			counter++;
+		}
+
+		Thread.sleep(5000);
+
+//		driver.quit();
+	}
+
+}
+
